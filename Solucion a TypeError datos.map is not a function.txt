@@ -1,0 +1,12 @@
+{Array.isArray(datos) && datos.length > 0 ? (
+                                <>
+                                    <h2 className='text-center py-3'>Deportes ({datos.length})</h2>
+                                    <div className="row">
+                                        {datos.map((item, index) => (
+                                            <CardEventos key={index} item={item} />
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <h3 className='text-center'>No hay datos disponibles.</h3>
+                            )}

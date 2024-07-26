@@ -1,0 +1,16 @@
+const params = useParams()
+    const [datos, setDatos] = useState([])
+    let URI = API + params.name
+    const getDatos = async () => {
+        try {
+            const response = await fetch(URI);
+            const data = await response.json();
+            //console.log(data)
+            setDatos(data);
+        } catch (error) {
+            console.error(error)
+        }
+    };
+    useEffect(() => {
+        getDatos();
+    }, [params.name]);

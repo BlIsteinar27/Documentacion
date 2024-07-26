@@ -1,0 +1,37 @@
+//esto se pone en Busquedas.jsx en la carpeta pages 
+const location = useLocation();
+    const txtBuscar = location.state;
+
+    const [datos, setDatos] = useState([])
+    const getDatos = async (valueSearch) =>{
+        try {
+        const URI=API+valueSearch;
+          const response = await fetch(URI);
+          const data = await response.json();
+          //console.log(data)
+          setDatos(data.products);
+        } catch (error) {
+          console.error(error)
+        }
+    };
+    useEffect(()=>{
+      getDatos(txtBuscar);
+    },[txtBuscar]);
+
+//esto se pone en el Header.jsx en la carpeta components
+
+const [txtbuscar, setTxtbuscar] = useState('');
+
+    const menejoTxt = (event) => {
+        setTxtbuscar(event.target.value);
+    };
+
+    const navigate = useNavigate();
+    const manejoEnvio = (event) => {
+        event.preventDefault();
+        navigate('/busquedas', {
+            state: txtbuscar,
+        });
+
+    };
+

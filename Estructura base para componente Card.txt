@@ -1,0 +1,16 @@
+<div className="col-md-4 col-lg-3 mb-4" >
+                <div className="card h-100" data-bs-theme="dark">
+                    <div className="card-header p-0">
+                        <img src={item.flags.png} alt="" className="img-fluid" />
+                    </div>
+                    <div className="card-body text-center">
+                        <h5>{item.name.common}</h5>
+                    </div>
+                    <div className="card-footer text-center">
+                        <a className="btn btn-outline-success btn-sm me-2" data-bs-toggle="modal" data-bs-target={`#${index}`}>
+                            Ver mas
+                        </a>
+                        <Link to={`/detalle/name/${item.name.common}`} href="#" className='btn btn-outline-light btn-sm me-2'>Detalle</Link>
+                    </div>
+                </div>
+            </div>
