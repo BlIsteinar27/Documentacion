@@ -1,0 +1,25 @@
+project/
+├─ public/
+│  ├─ .htaccess
+│  └─ index.php        # Front controller (router)
+├─ src/
+│  ├─ Config/
+│  │  └─ database.php
+│  ├─ Controllers/
+│  │  └─ UserController.php
+│  ├─ Models/
+│  │  └─ User.php
+│  ├─ Repositories/
+│  │  └─ UserRepository.php
+│  ├─ Services/
+│  │  └─ UserService.php
+│  ├─ Exceptions/
+│  │  └─ InvalidArgumentException.php
+│  └─ Helpers/
+│     └─ Response.php
+├─ vendor/
+├─ composer.json
+└─ README.md
+
+
+

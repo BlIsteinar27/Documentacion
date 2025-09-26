@@ -1,0 +1,51 @@
+mi-proyecto-poo/
+├── src/
+│   └── (tus clases PHP con namespace App)
+├── lib/
+│   └── (librerías auxiliares, namespace Libreria)
+├── vendor/          (generado por Composer)
+├── composer.json    (configuración de Composer)
+├── index.php        (archivo principal para probar)
+└── log.txt          (tu registro diario)
+
+
+
+version moderna 
+mi-proyecto-poo/
+├── src/                    ← Aquí van TODAS tus clases (App\)
+│   ├── Models/             ← Entidades como Usuario, Producto
+│   ├── Services/           ← Lógica de negocio (Notificador, Validador)
+│   ├── Abstract/           ← Clases abstractas
+├── vendor/                 ← Generado por Composer
+├── composer.json
+├── index.php               ← Archivo de prueba
+└── log.txt
+
+version corta moderna 
+mi-proyecto-poo/
+├── src/
+│   ├── Models/          # Entidades: Usuario, Producto, etc.
+│   ├── Services/        # Lógica de negocio
+│   ├── Contracts/       # Interfaces (nuevo!)
+│   └── Abstract/        # Clases abstractas
+├── vendor/
+├── composer.json
+├── index.php
+└── log.txt
+
+
+version mas espevifica y mas generica 
+SISTEMA-PEDIDOS
+│
+├── app/
+│   ├── Abstract/               # Clases abstractas
+│   ├── Contracts/              # Interfaces
+│   ├── Exceptions/             # Excepciones personalizadas
+│   ├── Models/                 # Clases principales: Producto, Pedido, Carrito
+│   └── Services/               # Lógica de negocio (opcional, pero útil)
+│
+├── public/
+│   └── index.php               # Punto de entrada
+│
+├── vendor/                     # Composer
+└── composer.json

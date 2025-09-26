@@ -1,0 +1,56 @@
+<----------Leyenda---------->
+-a => conecta a tu consola \ terminal
+-i => interactivo
+-t => terminal
+-d => hace que la ejecucion se haga en segundo plano
+-v => crear un volumen de manera implicita
+-p => mapear puertos
+
+
+<----------Comandos---------->
+
+
+docker create <nombre de la imagen>  => Crea un contenedor de una imagen
+docker create --name <nombre del contenedor> <nombre de la imagen> => Crea un contenedor con un nombre especifico de de una imagen
+
+docker volume create  => crear un volumen
+
+docker ps => Muestra lista de solo contenedores en ejecución
+docker ps -a => Muestra lista de todos los contenedores
+
+
+docker start <nombre del contenedor> => Iniciar contenedor exited o paused
+docker start -ai <nombre del contenedor =>
+
+
+docker run -it ubuntu /bin/bash => Ejecuta un contenedor de ubuntu
+docker run -it --name <nombre del contenedor> <nombre de la imagen> <comando de la imagen> => Crea un contenedor con el nombre especifico asignado y ejecuta el contenedor de la imagen con su comando correspondiente
+
+docker run -d -p 8080:80 --name <nombre distintivo de contenedor> <nombre de la imagen> => Ejecuta un contenedor de la imagen en segundo plano y mapea el puerto 8080 del contenedor al puerto 80 del host 
+
+
+
+docker stop <nombre del contenedor> => Detiene el contenedor
+docker restart <nombre del contenedor> => Reinicia el contenedor
+
+docker rm <nombre del contenedor> => Elimina el contenedor
+docker rmi -f <imagen> => Elimina la imagen
+
+
+docker image ls  O  docker images=> listar imagenes
+
+
+docker history <imagen>:<tag> => Muestra el historial de la imagen
+
+docker inspect <imagen>:<tag> => Muestra la informacion(metadatos) de la imagen
+
+
+docker pull <imagen>:<tag> => Descarga la imagen
+
+
+docker exec -it <nombre del contenedor> <comando> => Ejecuta el comando en el contenedor
+
+
+docker system df => Muestra el espacio de almacenamiento usado por los contenedores\imagenes
+
+docker system prune -a => Borra todos los contenedores y imagenes que no están en uso

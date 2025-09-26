@@ -1,0 +1,9 @@
+php artisan make:controller <nombre>
+php artisan make:model <nombre del modelo> 
+php artisan make:model <nombre del modelo> -m  (este comando crea modelo con la migracion) 
+php artisan make:migration <nombre tabla>
+
+php artisan migrate
+
+php artisan serve 
+

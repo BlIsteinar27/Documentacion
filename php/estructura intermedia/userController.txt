@@ -1,0 +1,16 @@
+namespace App\Controllers;
+use App\Services\UserService;
+use App\Helpers\Response;
+
+class UserController {
+  public function __construct(private UserService $service) {}
+  public function index(): void {
+    $users = $this->service->listAll();
+    Response::json(array_map(fn($u)=>$u->toArray(), $users));
+  }
+  public function show(int $id): void {
+    $u = $this->service->getById($id);
+    if (!$u) Response::jsonError('Not found',404);
+    Response::json($u->toArray());
+  }
+}

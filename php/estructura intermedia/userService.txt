@@ -1,0 +1,14 @@
+namespace App\Services;
+use App\Repositories\UserRepository;
+use App\Models\User;
+class UserService {
+  public function __construct(private UserRepository $repo) {}
+  public function register(array $data): User {
+    // validaciones de caso de uso
+    // check unique -> $this->repo->findByEmail()
+    // create model -> $user = new User(null,$data['name'],$data['email']);
+    // if password -> $user->setPasswordPlain(...)
+    // persist -> $id=$this->repo->add($user); $user = new User($id,...);
+    // return $user
+  }
+}

@@ -1,0 +1,15 @@
+<?php
+require __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/../src/Config/database.php';
+use App\Services\Database;
+use App\Repositories\UserRepository;
+use App\Services\UserService;
+use App\Controllers\UserController;
+
+$pdo = \App\Services\Database::connect($config);
+$repo = new UserRepository($pdo);
+$service = new UserService($repo);
+$controller = new UserController($service);
+
+// parse request...
+// ejemplo: if GET /users -> $controller->index();
