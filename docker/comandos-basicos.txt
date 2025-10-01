@@ -1,69 +1,80 @@
-<----------Leyenda---------->
--a => conecta a tu consola \ terminal
+Docker – Chuleta rápida
+
+Leyenda (flags más usados)
+-a => conecta a tu consola/terminal
 -i => interactivo
--t => terminal
--d => hace que la ejecucion se haga en segundo plano
--v => crear un volumen de manera implicita
--p => mapear puertos
+-t => asigna terminal
+-d => ejecución en segundo plano (detached)
+-v => monta un volumen o carpeta local:
+     -v volumen_docker:/ruta/contenedor
+     -v ./carpeta_local:/ruta/contenedor
+-p => mapea puertos (host:contenedor)
 . => indica el directorio actual
--f => actualizacion en vivo
+-f => depende del contexto:
+     logs -f => follow (seguir logs en vivo)
+     docker-compose -f => especificar archivo
 
-<----------Comandos---------->
+--------------------------------------------------
 
+Comandos básicos de Docker
 
-docker create <nombre de la imagen>  => Crea un contenedor de una imagen
-docker create --name <nombre del contenedor> <nombre de la imagen> => Crea un contenedor con un nombre especifico de de una imagen
+Contenedores
+docker create <imagen> => crea un contenedor a partir de una imagen
+docker create --name <nombre> <imagen> => crea contenedor con nombre específico
+docker start <contenedor> => inicia un contenedor detenido
+docker start -ai <contenedor> => inicia e interactúa en consola
+docker run -it ubuntu /bin/bash => corre Ubuntu en modo interactivo con bash
+docker run -it --name <nombre> <imagen> <cmd> => corre contenedor con nombre y comando específico
+docker run -d -p 8080:80 --name <nombre> <imagen> => ejecuta en segundo plano y expone puertos
+docker ps => lista contenedores activos
+docker ps -a => lista todos los contenedores
+docker stop <contenedor> => detiene contenedor
+docker restart <contenedor> => reinicia contenedor
+docker rm <contenedor> => elimina contenedor
 
-docker volume create  => crear un volumen
+Atajos útiles:
+docker stop $(docker ps -q) => detiene todos los contenedores
+docker rm $(docker ps -aq) => elimina todos los contenedores
 
-docker ps => Muestra lista de solo contenedores en ejecución
-docker ps -a => Muestra lista de todos los contenedores
+--------------------------------------------------
 
+Imágenes
+docker image ls  o  docker images => lista imágenes
+docker pull <imagen>:<tag> => descarga imagen
+docker rmi -f <imagen> => elimina imagen
+docker history <imagen>:<tag> => historial de capas
+docker inspect <imagen>:<tag> => muestra metadatos
 
-docker start <nombre del contenedor> => Iniciar contenedor exited o paused
-docker start -ai <nombre del contenedor =>
+--------------------------------------------------
 
+Volúmenes
+docker volume create => crea un volumen
 
-docker run -it ubuntu /bin/bash => Ejecuta un contenedor de ubuntu
-docker run -it --name <nombre del contenedor> <nombre de la imagen> <comando de la imagen> => Crea un contenedor con el nombre especifico asignado y ejecuta el contenedor de la imagen con su comando correspondiente
+--------------------------------------------------
 
-docker run -d -p 8080:80 --name <nombre distintivo de contenedor> <nombre de la imagen> => Ejecuta un contenedor de la imagen en segundo plano y mapea el puerto 8080 del contenedor al puerto 80 del host 
+Exec / Logs
+docker exec -it <contenedor> <comando> => ejecuta comando dentro de contenedor vivo
+docker logs -f <contenedor> => sigue logs de un contenedor específico
 
+--------------------------------------------------
 
+Limpieza
+docker system df => muestra uso de almacenamiento
+docker system prune -a => borra contenedores, imágenes y redes no usadas
 
-docker stop <nombre del contenedor> => Detiene el contenedor
-docker restart <nombre del contenedor> => Reinicia el contenedor
+--------------------------------------------------
 
-docker rm <nombre del contenedor> => Elimina el contenedor
-docker rmi -f <imagen> => Elimina la imagen
+Construcción de imágenes
+docker build -t <nombre>:<tag> . => crea imagen desde Dockerfile en directorio actual
+docker build -t <nombre>:<tag> <directorio> => crea imagen desde otro directorio
 
+--------------------------------------------------
 
-docker image ls  O  docker images=> listar imagenes
-
-
-docker history <imagen>:<tag> => Muestra el historial de la imagen
-
-docker inspect <imagen>:<tag> => Muestra la informacion(metadatos) de la imagen
-
-
-docker pull <imagen>:<tag> => Descarga la imagen
-
-
-docker exec -it <nombre del contenedor> <comando> => Ejecuta el comando en el contenedor
-
-
-docker system df => Muestra el espacio de almacenamiento usado por los contenedores\imagenes
-
-docker system prune -a => Borra todos los contenedores y imagenes que no están en uso
-
-docker build => Crea una imagen a partir de un archivo Dockerfile
-docker build -t <nombre de la imagen>:<version imagen> . => Crea una imagen a partir de un archivo Dockerfile y le asigna un nombre y una version
-
-docker history <nombre de la imagen>:<version imagen> => Muestra el historial de la imagen (las capas)
-
-docker-compose up => Ejecuta un archivo docker-compose.yml 
-docker-compose up -d => Ejecuta un archivo docker-compose.yml en segundo plano
-docker-compose ps => lista los contenedores activos creados por Compose.
-docker-compose up --scale web=3 => levanta múltiples instancias del mismo servicio (ej. 3 contenedores Nginx).
-
-docker-compose logs -f => Muestra los logs de un servicio (cuando se hace docker-compose up -d)
+Docker Compose
+docker-compose up => levanta servicios definidos en docker-compose.yml
+docker-compose up -d => levanta en segundo plano
+docker-compose down => detiene y elimina servicios creados por Compose
+docker-compose ps => lista servicios activos
+docker-compose logs -f => sigue logs de servicios
+docker-compose build => construye imágenes definidas en Compose
+docker-compose up --scale web=3 => escala un servicio (ejemplo: 3 instancias de Nginx)
