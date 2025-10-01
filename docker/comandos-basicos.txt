@@ -5,7 +5,8 @@
 -d => hace que la ejecucion se haga en segundo plano
 -v => crear un volumen de manera implicita
 -p => mapear puertos
-
+. => indica el directorio actual
+-f => actualizacion en vivo
 
 <----------Comandos---------->
 
@@ -54,3 +55,15 @@ docker exec -it <nombre del contenedor> <comando> => Ejecuta el comando en el co
 docker system df => Muestra el espacio de almacenamiento usado por los contenedores\imagenes
 
 docker system prune -a => Borra todos los contenedores y imagenes que no están en uso
+
+docker build => Crea una imagen a partir de un archivo Dockerfile
+docker build -t <nombre de la imagen>:<version imagen> . => Crea una imagen a partir de un archivo Dockerfile y le asigna un nombre y una version
+
+docker history <nombre de la imagen>:<version imagen> => Muestra el historial de la imagen (las capas)
+
+docker-compose up => Ejecuta un archivo docker-compose.yml 
+docker-compose up -d => Ejecuta un archivo docker-compose.yml en segundo plano
+docker-compose ps => lista los contenedores activos creados por Compose.
+docker-compose up --scale web=3 => levanta múltiples instancias del mismo servicio (ej. 3 contenedores Nginx).
+
+docker-compose logs -f => Muestra los logs de un servicio (cuando se hace docker-compose up -d)
