@@ -1,0 +1,8 @@
+1. composer create-project laravel/laravel <carpeta donde se va a crear el proyecto>
+2. php artisan install:api => para crear la estructura de la api (escribir yes para que se ejecute una migracion de una base de datos)
+3. configurar el archivo .env => (variables de entorno para configurar la conexion a la base de datos (access tokens))
+4. php artisan migrate => para crear la base de datos con las tablas por defecto de laravel
+5. php artisan make:model <nombre del modelo> -m => para crear un modelo con la migración
+6. configurar/definir la estructura de las tablas de las migraciones creadas previamente
+7. php artisan migrate => para crear las tablas de la base de datos
+8. configurar las relaciones entre los modelos creados para que laravel los entienda automaticamente

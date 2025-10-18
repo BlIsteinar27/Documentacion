@@ -1,6 +1,6 @@
 1) npm create vite@latest .
 2) npm install react-router-dom ,  npm install react-youtube
-3) npm install bootstrap@5.3.3
+3) npm install bootstrap@5.3.8
     en index.html si no se usa modales
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <script type="module" src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script> // agregar type="module".
@@ -12,7 +12,7 @@
 
 
     limpiar app.css, index.css
-4) crear las carpetas pages y components dentro de src
+4) crear las carpetas pages, components, hooks, utils, dentro de src
 5) crear los componentes Footer.jsx y Header.jsx "aplicar el rafce"
     importar el navbar y un footer de bootstrap
 6) crear las paginas Inicio, Categorias, Detalle, Peliculas, Tendencias "aplicar el rafce"
