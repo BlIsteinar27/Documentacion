@@ -1,0 +1,53 @@
+1. php artisan make:command TruncateAllTables => para crear el comando
+2.usar este codigo como base para ese archivo que se acaba de crear 
+
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+
+class TruncateAllTables extends Command
+{
+    protected $signature = 'db:truncate-all';
+    protected $description = 'Trunca todas las tablas de la base de datos (solo para desarrollo)';
+
+    public function handle()
+    {
+        if (app()->environment() !== 'local') {
+            $this->error('¡Esta acción solo está permitida en entorno local!');
+            return;
+        }
+
+        if (!$this->confirm('¿Estás seguro de que quieres truncar TODAS las tablas?')) {
+            return;
+        }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        $tables = [
+            'pago_moviles',
+            'pago_detalles',
+            'pagos',
+            'entradas',
+            'compras',
+            'tipo_entradas',
+            'eventos',
+            'compradores',
+            'tipo_pagos',
+            'monedas',
+            'estatus',
+        ];
+
+        foreach ($tables as $table) {
+            DB::table($table)->truncate();
+            $this->info("Tabla {$table} truncada.");
+        }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $this->info('¡Todas las tablas han sido truncadas!');
+    }
+}
+3.php artisan db:truncate-all => para ejecutar comando 
