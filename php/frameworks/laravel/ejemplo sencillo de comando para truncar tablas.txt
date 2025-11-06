@@ -1,0 +1,58 @@
+1.php artisan make:command TruncateAppTables => para crear el comando
+2.<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+
+class TruncateAppTables extends Command
+{
+    /**
+     * El nombre y la firma del comando de consola.
+     *
+     * @var string
+     */
+    protected $signature = 'db:reset-pensum';
+
+    /**
+     * La descripción de la consola.
+     *
+     * @var string
+     */
+    protected $description = 'Trunca las tablas de Contenido, Clasificación y Relación (solo para desarrollo).';
+
+    /**
+     * Ejecuta el comando de consola.
+     */
+    public function handle()
+    {
+        // NOTA: La validación de entorno se deja fuera, tal como solicitaste, para simplificar.
+
+        if (!$this->confirm('¿Estás seguro de que quieres truncar las tablas del pensum y contenido?')) {
+            return;
+        }
+
+        // Desactivamos la verificación de claves foráneas temporalmente
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // Definición de las tablas a truncar
+        // NOTA: El orden es importante (Hijo antes que Padre)
+        $tables = [
+            'relacion_contenido', // Primero la tabla pivote
+            'contenidos',         // Luego la tabla principal
+            'clasificaciones',    // Finalmente la tabla padre (Clasificación)
+        ];
+
+        foreach ($tables as $table) {
+            DB::table($table)->truncate();
+            $this->info("Tabla '{$table}' truncada correctamente.");
+        }
+
+        // Reactivamos la verificación de claves foráneas
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $this->info('¡Reinicio de la estructura del pensum completado! Listo para correr los Seeders.');
+    }
+}
+3.php artisan db:reset-pensum => para ejecutar comando

@@ -1,10 +1,18 @@
 php artisan make:controller <nombre>
+php artisan make:controller <nombre> --api => crear el controlador con los metodos index, store, show, update, destroy
 php artisan make:model <nombre del modelo> 
 php artisan make:model <nombre del modelo> -m  (este comando crea modelo con la migracion) 
 php artisan make:migration <nombre tabla>
+
+
 
 php artisan migrate
 php artisan migrate:reset -> limpia la base de datos
 
 php artisan serve 
 
+php artisan route:list | findstr entradas => lista de rutas (comando nativo de windows)
+
+php artisan route:list | select-string entradas => lista de rutas (comando de powrshell)
+php artisan route:list --name=entradas => listar rutas (comando filtro de artisan)
+php artisan route:list --path=entradas => listar rutas (comando filtro de artisan)

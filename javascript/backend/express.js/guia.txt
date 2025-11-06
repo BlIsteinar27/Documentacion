@@ -1,0 +1,101 @@
+1. npm init -> para iniciar proyecto de node (dar enter para todas configuraciones por defecto)
+2. crear carpeta src con archivos index.js, app.js y config.js
+3. pegar este contenido en config.js (donde van a estar todas la variables globales)
+modulo.exports = {
+    app: {
+        port: proccess.env.PORT || 3000,
+    }
+};
+4.pegar este contenido en index.js 
+const app = require('./app');
+
+app.listen(app.get('port'), () => {
+    console.log(`Server is running on port ${app.get('port')}`);
+});
+5. ir a package.json y sustituir esto 
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  por esto 
+  "scripts": {
+    "dev": "nodemon /src/index.js"
+  },
+6. correr este comando => npm i express nodemon -> para instalar express y nodemon
+7. pegar este contenido en app.js
+const express = require('express');
+const config = require('./config');
+const app = express();
+
+
+
+//configuracion
+app.set('port', config.app.port)
+
+//rutas
+
+
+
+module.exports = app;
+7. crear archivo .env -> para configurar variables de entorno (importante correr comando npm i dotenv -D para poder usar .env)
+PORT = 3000
+8. agregar esto a config.js 
+require('dotenv').config()
+9. crear src/red/respuestas.js y pegar este contenido (son helpers para respuestas )
+exports.success = function (req, res, mensaje = '', status = 200) {
+   
+  res.status(status).send({
+    error: false,
+    status: status,
+    body: mensaje,
+  });
+};
+
+exports.error = function (req, res, mensaje ='Error interno del servidor', status = 500) {
+
+  res.status(status).send({
+    error: true,
+    status: status,
+    body: mensaje,
+  });
+};
+
+10. crear src/DB/mysql.js y pegar este contenido (es la conexion a la base de datos)
+
+const mysql = require('mysql')
+const config = require('../config')
+
+
+function todos (tabla){
+    
+}
+function uno (tabla, id){
+
+}
+function agregar (tabla, data){
+
+}
+function eliminar (tabla, id){
+
+}
+
+module.exports = {
+    todos,
+    uno,
+    agregar,
+    eliminar
+}
+
+11. crear src/modulos/<nombre>/controlador.js y pegar este contenido (es el controlador de la ruta)
+const db = require('../../DB/mysql');
+const respuestas = require('../../red/respuestas');
+const { success, error } = respuestas;
+
+const TABLA = 'clientes';
+function todos (){
+    return db.todos(TABLA);
+}
+
+module.exports = {
+    todos
+};
