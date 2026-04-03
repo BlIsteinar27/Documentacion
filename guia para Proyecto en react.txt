@@ -1,0 +1,42 @@
+1) npm create vite@latest .
+2) npm install react-router-dom
+3) npm install bootstrap@5.3.3
+    en index.html agregar estas lineas 
+        despues del </title> 
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        andes del </body>
+        <script type="module" src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script> 
+    
+    limpiar app.css, index.css 
+    limpiar el archivo app.jsx y aplicar el rafce 
+    agregar las clases text-center py-4 y verificar si tenemos todo bien
+
+4) crear las carpetas pages y components dentro de src
+5) crear los componentes  Header.jsx, Footer.jsx y "aplicar el rafce"
+    - importar el navbar y un footer de bootstrap 
+    - configurar el color y agragar el logo
+    - import logo from '../assets/logo.jpg' el logo debe estar en assets
+    - adaptar el menu a Ininio, Movil, Laptop, Tienda, Categorias, Contactos
+
+6) crear dentro de page las paginas Inicio, Tienda, Movil, Laptop, Categorias, Contactos 
+    "aplicar el rafce" y h3 con las clases text-center py-4
+7) crear el sistema de ruteo comenzando por el app.jsx en la zona de renderizado
+    <BrowserRouter>
+        <Header/>
+        <Routes>
+            <Route path="/" element={<Inicio/>} />
+            <Route path="/tienda" element={<Tienda/>} />
+            <Route path="/laptop" element={<Laptop/>} />
+            <Route path="/movil" element={<Movil/>} />
+            <Route path="/categorias/:id" element={<Categorias/>} />
+            <Route path="/contactos" element={<Contactos/>} />
+            <Route path="*" element={<Inicio/>} />
+        </Routes>
+        <Footer/>
+    </BrowserRouter>
+    verificar la navegacion desde localhost:5137/tienda y todas las demas
+8) ahora crear la otra parte de la navegacion desde el componente Header
+     <Link to="/inicio" className="nav-link active" aria-current="page" href="/">Inicio</Link> 
+     cambiando el a por Link to="/movil" con la ruta a la paginas
+9) crear un componente carrusel y agregarlo en la pagina inicio, no olvidar el fragment
+10) programar el fetch de datos en Movil.jsx y crear el componente Cardprod.jsx para mostrar los productos 

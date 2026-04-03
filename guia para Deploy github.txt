@@ -1,0 +1,35 @@
+Entramos en la página github github.com y creamos el repositorio
+
+1) Abril un terminal en VSC
+2) npm create vite@latest .
+3) npm install
+4) Limpiar y colocar el Hola mundo en App.jsx
+5) probar localmente con npm run dev
+6) npm i gh-pages -D // esto nos permitira publicar
+5) Iniciar el repositorio local
+a. Escribimos git init
+b. Escribimos git add .
+c. Escribimos git commit –m “primer comit”
+Con esto tenemos nuestro repositorio local actualizado, ahora vamos con el repositorio remoto
+
+d. Escribimos git remote add origin https://github.com/profWilliamArte/peliculasTres.git // lo que nos da el repositorio
+e. Escribimos git push -u origin main
+Hasta este momento ya se debe haber subido todas las páginas con sus carpetas
+
+Ahora solo falta configurar GitHub Pages para desplegar la pagina
+Configurar gh-pages para hacer deploy y publicar al mismo tiempo
+1) En el archivo vite.config.js agregar base: nombre.github.io/nombre del repositorio
+		export default defineConfig({
+		plugins: [react()],
+			base: "https://nombredetucuenta.github.io/nombredelrepositorio",
+		})
+		
+2) En el archive package.json en la sección de scripts predeploy y deploy
+		"scripts": {
+			"dev": "vite",
+			"build": "vite build",
+			"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+			"preview": "vite preview",
+			"predeploy": "npm run build",
+			"deploy": "gh-pages -d dist"
+		},

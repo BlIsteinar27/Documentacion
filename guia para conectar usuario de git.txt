@@ -1,0 +1,9 @@
+Para conectar Git a tu usuario, debes seguir los siguientes pasos:
+
+Configurar tu nombre de usuario en Git: Puedes establecer tu nombre de usuario en Git utilizando el comando git config. Esto se puede hacer de forma global para todos los repositorios o para un repositorio específico. Aquí tienes un ejemplo de cómo configurar tu nombre de usuario de forma global:
+
+git config --global user.name "Tu Nombre"
+
+Configurar tu dirección de correo electrónico en Git: Al igual que con el nombre de usuario, también puedes configurar tu dirección de correo electrónico en Git. Aquí tienes un ejemplo de cómo hacerlo de forma global:
+
+git config --global user.email "ejemplo@email.com"
